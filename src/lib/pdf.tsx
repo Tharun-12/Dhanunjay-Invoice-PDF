@@ -26,12 +26,12 @@ const SHOP = {
   motto: 'Grace in Every Thread...',
 };
 
-const TERMS = [
-  'Exchange within 7 days with bill & tags intact.',
-  'No returns on blouse-cut or altered sarees.',
-  'Zari & silk: dry clean only; store in muslin.',
-  'Handloom colour variations are natural.',
-];
+// const TERMS = [
+//   'Exchange within 7 days with bill & tags intact.',
+//   'No returns on blouse-cut or altered sarees.',
+//   'Zari & silk: dry clean only; store in muslin.',
+//   'Handloom colour variations are natural.',
+// ];
 
 const styles = StyleSheet.create({
   page: { padding: 0, paddingBottom: 56, fontFamily: 'Helvetica', fontSize: 8, color: TEXT, backgroundColor: '#FFFFFF' },
@@ -296,12 +296,12 @@ export function InvoiceDocument({ sale, logo }: { sale: Sale; logo?: string | nu
               </View>
             ))}
           </View>
-          {SHOW_TERMS && (
+          {/* {SHOW_TERMS && (
             <View style={styles.lowerBox}>
               <Text style={styles.boxLabel}>Terms & Care</Text>
               {TERMS.map((term, index) => <Text style={styles.term} key={term}>{`${index + 1}. ${term}`}</Text>)}
             </View>
-          )}
+          )} */}
         </View>
 
         {/* Pushes the signature down toward the footer */}
