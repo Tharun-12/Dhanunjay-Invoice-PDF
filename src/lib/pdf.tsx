@@ -8,10 +8,9 @@ const GOLD = '#C19736';
 const CREAM = '#FAF6EB';
 const BORDER = '#DCCCAE';
 const TEXT = '#4A4037';
-const MUTED = '#7D7165';
+const MUTED = '#120c05';
 
 // Set to false if you don't want the Terms & Care box on the receipt
-const SHOW_TERMS = true;
 
 const SHOP = {
   name: 'Amma Meenakshi Saree Mandir',

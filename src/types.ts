@@ -1,7 +1,7 @@
 export interface SareeItem {
   id: string;
   saree_name: string;
-  saree_code: string;
+  saree_code: string | null;
   quantity: number;
   price: number;
   line_total: number;

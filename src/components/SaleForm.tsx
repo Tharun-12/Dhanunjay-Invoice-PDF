@@ -22,8 +22,29 @@ const EMPTY_FORM: SaleForm = {
   sale_date: new Date().toISOString().slice(0, 10),
 };
 
+
+function todayLocal(): string {
+  const d = new Date();
+  const mm = String(d.getMonth() + 1).padStart(2, '0');
+  const dd = String(d.getDate()).padStart(2, '0');
+  return `${d.getFullYear()}-${mm}-${dd}`;
+}
+
+const createEmptyForm = (): SaleForm => ({
+  customer_name: '',
+  customer_phone: '',
+  customer_address: '',
+  items: [{ ...EMPTY_ITEM }],
+  discount: '0',
+  payment_method: 'Cash',
+  payment_status: 'Paid',
+  amount_paid: '0',
+  notes: '',
+  sale_date: todayLocal(),
+});
+
 export default function SaleForm({ onSubmit, onCancel }: Props) {
-  const [form, setForm] = useState<SaleForm>(EMPTY_FORM);
+  const [form, setForm] = useState<SaleForm>(createEmptyForm);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -58,7 +79,7 @@ export default function SaleForm({ onSubmit, onCancel }: Props) {
     setSaving(true);
     try {
       await onSubmit(form);
-      setForm(EMPTY_FORM);
+      setForm(createEmptyForm());
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to save sale.');
     } finally {

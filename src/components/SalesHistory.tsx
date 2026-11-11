@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import type { Sale } from '@/types';
 import { generateSareeInvoice } from '@/lib/pdf';
 import { Download, MessageCircle, Search, Trash2, Eye, Loader2 } from 'lucide-react';
@@ -29,17 +29,17 @@ async function downloadPdf(sale: Sale): Promise<void> {
   const link = document.createElement('a');
   link.href = url;
   link.download = `${sale.invoice_number}.pdf`;
+  document.body.appendChild(link);
   link.click();
-  URL.revokeObjectURL(url);
+  document.body.removeChild(link);
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
 async function shareWhatsApp(sale: Sale) {
   const phone = sale.customer_phone.replace(/\D/g, '');
-  // convert to international format for India
   const intl = phone.length === 10 ? `91${phone}` : phone;
-  const message = `Hello ${sale.customer_name}, thank you for shopping with Radhika Saree Centre! Your invoice ${sale.invoice_number} (Total: ${formatCurrency(sale.total)}) is attached. Please download it and share it here.`;
-  const url = `https://wa.me/${intl}?text=${encodeURIComponent(message)}`;
-  window.open(url, '_blank');
+  const message = `Hello ${sale.customer_name}, thank you for shopping with Amma Meenakshi Saree Mandir! Your invoice ${sale.invoice_number} (Total: ${formatCurrency(sale.total)}) is attached. Please download it and share it here.`;
+  window.open(`https://wa.me/${intl}?text=${encodeURIComponent(message)}`, '_blank');
 }
 
 export default function SalesHistory({ sales, onDelete, onSelect }: Props) {
